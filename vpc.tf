@@ -1,9 +1,6 @@
 variable "url" {
 }
 
-variable "var.ibmcloud_api_key" {
-}
-
 resource "null_resource" "echourl" {
   count      = "1"
 
