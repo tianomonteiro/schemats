@@ -5,7 +5,7 @@ resource "null_resource" "echourl" {
   count      = "1"
 
   provisioner "local-exec" {
-    command = 'echo var.url'
+    command = "echo ${var.url}"
   }
 }
 
