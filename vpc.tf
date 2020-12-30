@@ -9,5 +9,11 @@ resource "null_resource" "echourl" {
 }
 
 output "url" {
-  value = null_resource.echourl.id
+  value = "${null_resource.echourl.id}"
+}
+
+output "resources" {
+  resource_id = "${null_resource.echourl.id}"
+  resource_name = "URL de Administração do uCloud"
+  resource_controller_url =  "${var.url}"
 }
