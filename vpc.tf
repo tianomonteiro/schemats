@@ -8,12 +8,6 @@ resource "null_resource" "echourl" {
   }
 }
 
-output "url" {
-  value = "${null_resource.echourl.id}"
-}
-
-output "resource" {
-  resource_id = "${null_resource.echourl.id}"
-  resource_name = "URL de Administração do uCloud"
-  resource_controller_url =  "${var.url}"
+output "cpd_url" {
+  value = "${var.url}"
 }
