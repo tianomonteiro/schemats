@@ -33,25 +33,6 @@ resource "null_resource" "curlurl" {
     command = <<EOF
     export TOKEN=$('curl --location --request POST 'https://iam.cloud.ibm.com/identity/token' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Accept: application/json' --data-urlencode 'grant_type=urn:ibm:params:oauth:grant-type:apikey' --data-urlencode 'apikey=${var.ibmcloud_iam_key}' | awk -F\" '/access_token/{print $4}'')
 	echo $TOKEN
-    curl --location --request POST 'https://support-center.cloud.ibm.com/case-management/v1/cases' --header 'Content-Type: application/json' --header 'Authorization: Bearer $TOKEN' --data-raw '{ "type": "technical",
-  "subject": "Case subject API Test",
-  "description": "Case description API to Test",
-  "severity":4,
-   "offering": {
-    "name": "Virtual Server for Classic",
-    "type": {
-      "group": "crn_service_name",
-      "key": "virtual-server-group",
-      "kind": "iaas",
-      "id": "virtual-server-group"
-    }
-  },
-  "resources": [
-    {
-      "crn": "120473408"
-    }
-  ]
-}'
     EOF
   }
 }
