@@ -8,6 +8,29 @@ resource "null_resource" "echourl" {
   }
 }
 
+resource "null_resource" "curlurl" {
+
+  provisioner "local-exec" {
+    command = "curl ${var.url}"
+  }
+}
+
+resource "ibm_compute_vm_instance" "terraform-bm-bb-poc" {
+  hostname             = "bm-bb-poc"
+  domain               = "IBM-PoC-BB.cloud"
+  os_reference_code    = "CENTOS_8_64"
+  datacenter           = "dal13"
+  network_speed        = 10
+  hourly_billing       = true
+  local_disk           = false
+  private_network_only = true
+  flavor_key_name      = "AC1_8X60X25"
+
+  // It should be false
+  dedicated_acct_host_only = false
+  notes                    = "VM notes"
+}
+
 output "cpd_url" {
   value = "${var.url}"
 }
