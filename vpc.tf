@@ -15,7 +15,7 @@ resource "null_resource" "curlurl" {
 
   provisioner "local-exec" {
     command = <<EOF
-    export OS_TOKEN=$(curl -o temp.txt --location --request POST 'https://iam.cloud.ibm.com/identity/token' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Accept: application/json' --data-urlencode 'grant_type=urn:ibm:params:oauth:grant-type:apikey' --data-urlencode 'apikey=${var.ibmcloud_iam_key}  &&  cat temp.txt | grep "X-Subject-Token" | awk '{printf $2}') && rm temp.txt && echo $OS_TOKEN'
+    export OS_TOKEN=$(curl -o temp.txt --location --request POST 'https://iam.cloud.ibm.com/identity/token' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Accept: application/json' --data-urlencode 'grant_type=urn:ibm:params:oauth:grant-type:apikey' --data-urlencode 'apikey=${var.ibmcloud_iam_key}'  &&  cat temp.txt | grep "X-Subject-Token" | awk '{printf $2}') && rm temp.txt && echo $OS_TOKEN
     EOF
   }
 }
